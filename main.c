@@ -1,10 +1,13 @@
 #include "pile.h"
-
+#include "file.h"
+#include "truc.h"
 int main(){
 	Pile_t * pt_pile = NULL;
 	int taille_tab = 20;
 	
 	int var=0;
+    int   n=3;
+    char  T[]={'a','b','c'};
 	
 	/*scanf("%d", &taille_tab); pas bon pour utiliser valgrind et ddd */
 	/* placer les arguments en ligne de commande dans le main()       */
@@ -27,5 +30,7 @@ int main(){
 	
 	libererPile(pt_pile);
 	
+    printf("\n\n-------Test de TRUC-------\n\n");
+    truc(0,n,T);
 	return 0;
 }
