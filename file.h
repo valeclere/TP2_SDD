@@ -23,8 +23,9 @@ typedef struct file{
 
 
 File_t* initFile(int taille);
-void entreeFile(File_t fi, element_t val, int* err);
-void sortieFile(File_t fi,int* err);
+void enfiler(File_t *pt_fi, element_t val, int *err);
+void defiler(File_t *pt_fi,int* err);
 bool estFileVide(File_t fi);
-void libererFile(File_t fi);
+void libererFile(File_t * pt_fi);
+void affichageFile(File_t *pt_fi);
 #endif /* file_h */

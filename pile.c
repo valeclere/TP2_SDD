@@ -176,11 +176,4 @@ void affichage_pile_int(Pile_t * pt_pile)
 		printf("%d\n", *(pt_tab+i));
 	}
 }
-
-
-
-
-
-
-
 /* ----FIN DU MODULE---- */

@@ -29,8 +29,29 @@ int main(){
 	printf("\nvariable dépilé = %d\n", var);
 	
 	libererPile(pt_pile);
-	
-    printf("\n\n-------Test de TRUC-------\n\n");
-    truc(0,n,T);
+    printf("\n\n-------Tests FILE---------\n\n");
+    File_t *pt_file=NULL;
+    int mis=0;
+    int *err=&mis;
+    pt_file=initFile(10);
+    enfiler(pt_file, 2, err);
+    enfiler(pt_file, 10, err);
+    enfiler(pt_file, 239, err);
+    enfiler(pt_file, 5089, err);
+    printf("\naffichage File initiale\n\n");
+    affichageFile(pt_file);
+    /**/
+    defiler(pt_file, err);
+    printf("\naffichage File en partie défilée\n\n");
+    affichageFile(pt_file);
+    /**/
+    enfiler(pt_file, 1111, err);
+    enfiler(pt_file, 2222, err);
+    printf("\naffichage File re-enfiler\n\n");
+    affichageFile(pt_file);
+
+    libererFile(pt_file);
+    //    printf("\n\n-------Tests de TRUC-------\n\n");
+//    truc(0,n,T);
 	return 0;
 }
