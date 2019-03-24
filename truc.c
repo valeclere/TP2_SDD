@@ -8,7 +8,7 @@
 
 #include "truc.h"
 
-void truc(int i, int n, char T[])
+void truc(int i, int n, element_t T[])
 {
     int       j;
     int       temp;

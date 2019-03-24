@@ -1,34 +1,49 @@
 #include "pile.h"
 #include "file.h"
 #include "truc.h"
+
 int main(){
-	Pile_t * pt_pile = NULL;
-	int taille_tab = 20;
 	
-	int var=0;
-    int   n=3;
-    char  T[]={'a','b','c'};
+	/*----------------------TESTS du module PILE--------------------------*/
+	
+	Pile_t * pt_pile = NULL; /* pointeur sur la pile */
+	int taille_tab = 10; /* taille de la pile */
+	int var=0; /* variable pour stocker la valeur dépilée */
 	
 	/*scanf("%d", &taille_tab); pas bon pour utiliser valgrind et ddd */
 	/* placer les arguments en ligne de commande dans le main()       */
 	
+	/* initialisation de la pile */
 	pt_pile = initPile(taille_tab);
-	
-	estVide(pt_pile);
-	
-	empiler(pt_pile, 22);
-	empiler(pt_pile, 23);
-	empiler(pt_pile, 24);
-	empiler(pt_pile, 25);
-	empiler(pt_pile, 26);
-	
+	printf("\n-> PILE initialisée\n");
 	affichage_pile_int(pt_pile);
 	estVide(pt_pile);
 	
-	var = depiler(pt_pile);
-	printf("\nvariable dépilé = %d\n", var);
+	/* on empile 5 valeurs */
+	empiler(pt_pile, 12);
+	empiler(pt_pile, 23);
+	empiler(pt_pile, 44);
+	empiler(pt_pile, 75);
+	empiler(pt_pile, 6);
+	printf("\n-> PILE avec 5 valeurs empilées\n");
+	affichage_pile_int(pt_pile);
+	estVide(pt_pile);
 	
-	libererPile(pt_pile);
+	/* on dépile la dernière valeur rentrée */
+	printf("\n-> PILE avec la dernière valeur dépilée\n");
+	var = depiler(pt_pile);
+	affichage_pile_int(pt_pile);
+	printf("valeur dépilée = %d\n", var);
+	
+	libererPile(pt_pile); /* on libère l'espace mémoire */
+	
+	
+	/*------------------------FIN tests PILE------------------------------*/
+	/*--------------------------------------------------------------------*/
+	
+    int   n=3;
+    char  T[]={'a','b','c'};
+	
     printf("\n\n-------Tests FILE---------\n\n");
     File_t *pt_file=NULL;
     int mis=0;

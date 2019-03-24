@@ -11,5 +11,7 @@
 
 #include <stdio.h>
 
-void truc(int i, int n, char T[]);
+typedef int element_t;
+
+void truc(int i, int n, element_t T[]);
 #endif /* truc_h */

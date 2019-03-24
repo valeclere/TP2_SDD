@@ -173,7 +173,7 @@ void affichage_pile_int(Pile_t * pt_pile)
 	
 	for (i=0;i<taille;i++)
 	{
-		printf("%d\n", *(pt_tab+i));
+		printf("element n°%d = %d\n", taille-i, *(pt_tab+taille-i-1));
 	}
 }
 /* ----FIN DU MODULE---- */
