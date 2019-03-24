@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdbool.h> /* pour avoir le type bool */
 
-
+#define FORMAT "%d\n"
 typedef int element_t; /* type de variables présentes dans le tableau, ici on considère des int */
 
 typedef struct Pile_s{

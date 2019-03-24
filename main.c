@@ -6,6 +6,8 @@ int main(){
 	
 	/*----------------------TESTS du module PILE--------------------------*/
 	
+	printf("\n\n-------Tests PILE---------\n\n");
+	
 	Pile_t * pt_pile = NULL; /* pointeur sur la pile */
 	int taille_tab = 10; /* taille de la pile */
 	int var=0; /* variable pour stocker la valeur dépilée */
@@ -41,8 +43,6 @@ int main(){
 	/*------------------------FIN tests PILE------------------------------*/
 	/*--------------------------------------------------------------------*/
 	
-    int   n=3;
-    char  T[]={'a','b','c'};
 	
     printf("\n\n-------Tests FILE---------\n\n");
     File_t *pt_file=NULL;
@@ -66,7 +66,14 @@ int main(){
     affichageFile(pt_file);
 
     libererFile(pt_file);
-    //    printf("\n\n-------Tests de TRUC-------\n\n");
-//    truc(0,n,T);
+
+	
+	/* ----------fonction TRUC récursive ---------------------*/
+	int   n=3;
+    truc_t  T[]={'a','b','c'};
+    
+	printf("\n\n-------Tests de TRUC-------\n\n");
+    truc(0,n,T);
+	
 	return 0;
 }

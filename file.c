@@ -103,7 +103,7 @@ void affichageFile(File_t *pt_fi)
     int i;
     if(pt_fi->nb_elt!=0){
         for(i=0;(pt_fi->deb)+i<=pt_fi->fin;i++) {
-            printf("Elément n°%d = %d\n",pt_fi->nb_elt-i,*((pt_fi->deb)+i));
+            printf("Elément n°%d =" FORMAT,pt_fi->nb_elt-i,*((pt_fi->deb)+i));
         }
     }
     else printf("La file est vide ---> RIEN A AFFICHER\n");

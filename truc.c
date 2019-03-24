@@ -8,7 +8,7 @@
 
 #include "truc.h"
 
-void truc(int i, int n, element_t T[])
+void truc(int i, int n, truc_t T[])
 {
     int       j;
     int       temp;
@@ -16,7 +16,7 @@ void truc(int i, int n, element_t T[])
     {
         for(j=0;j<n;j++)
         {
-            printf("T[%d]= %c\n",j,T[j]);
+            printf("T[%d]=" FORMAT_TRUC,j,T[j]);
         }
          printf("----------------\n");
     }

@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+
+#define FORMAT "%d\n"
 typedef int element_t;
 
 typedef struct file{

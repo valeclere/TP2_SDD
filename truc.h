@@ -11,7 +11,9 @@
 
 #include <stdio.h>
 
-typedef int element_t;
+#define FORMAT_TRUC "%c\n"
+typedef char truc_t;
 
-void truc(int i, int n, element_t T[]);
+void truc(int i, int n, truc_t T[]);
+
 #endif /* truc_h */
