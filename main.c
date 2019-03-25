@@ -18,30 +18,27 @@ int main(){
 	/* initialisation de la pile */
 	pt_pile = initPile(taille_tab);
 	printf("\n-> PILE initialisée\n");
-	affichage_pile_int(pt_pile);
-	estVide(pt_pile);
+	affichagePile(pt_pile);
+	printf("\nla pile est vide == %d\n", estVide(pt_pile)); /* estVide retourne 1 car la pile est vide */
 	
 	/* on empile 5 valeurs */
 	empiler(pt_pile, 12);
 	empiler(pt_pile, 23);
 	empiler(pt_pile, 44);
 	empiler(pt_pile, 75);
-	empiler(pt_pile, 6);
+	empiler(pt_pile, 6); /* dernière valeur empilée */
 	printf("\n-> PILE avec 5 valeurs empilées\n");
-	affichage_pile_int(pt_pile);
-	estVide(pt_pile);
+	affichagePile(pt_pile);
+	printf("\nla pile est vide == %d\n", estVide(pt_pile)); /* estVide retourne 0 car la pile n'est pas vide */
 	
 	/* on dépile la dernière valeur rentrée */
 	printf("\n-> PILE avec la dernière valeur dépilée\n");
 	var = depiler(pt_pile);
-	affichage_pile_int(pt_pile);
-	printf("valeur dépilée = %d\n", var);
+	affichagePile(pt_pile);
+	printf("\nvaleur dépilée = %d\n", var);
 	
 	libererPile(pt_pile); /* on libère l'espace mémoire */
-	
-	
-	/*------------------------FIN tests PILE------------------------------*/
-	
+		
 	
 	/*-----------------------------TESTS FILE-----------------------------*/
 	
@@ -70,13 +67,18 @@ int main(){
     libererFile(pt_file);
 
 	
-	/* ----------fonction TRUC récursive ---------------------*/
+	/* ----------fonction TRUC---------------------*/
+	
 	int   n=3;
     truc_t  T[]={'a','b','c'};
     
-	printf("\n\n-------Tests de TRUC-------\n\n");
+	printf("\n\n-------Tests de TRUC récursive-------\n\n");
     truc_rec(0,n,T);
+    
+    printf("\n\n-------Tests de TRUC itérative-------\n\n");
     truc_ite(0, n,T);
+	
+	printf("\n");
 	
 	return 0;
 }

@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h> /* pour avoir le type bool */
+#include <stdbool.h> /* pour récupérer le type bool */
 
-#define FORMAT "%d\n"
+#define FORMAT_ELT "%d\n" /* format utilisé dans le printf correspondant au type de element_t */
 typedef int element_t; /* type de variables présentes dans le tableau, ici on considère des int */
 
 typedef struct Pile_s{
@@ -17,9 +17,9 @@ typedef struct Pile_s{
 Pile_t * initPile(int taille);
 void empiler(Pile_t * pt_pile, element_t element);
 element_t depiler(Pile_t * pt_pile);
-bool estVide(Pile_t * pt_pile); /* attention suppr l'affichage pour rapport */
+bool estVide(Pile_t * pt_pile);
 void libererPile(Pile_t * pt_pile);
-void affichage_pile_int(Pile_t * pt_pile); /* afficher pour tester, à supprimer pour rendre le projet */
+void affichagePile(Pile_t * pt_pile);
 
 
 #endif

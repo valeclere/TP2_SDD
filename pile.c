@@ -108,7 +108,6 @@ element_t depiler(Pile_t * pt_pile)
 	
 	element = *(pt_tab+nb_elt-1);
 	*(pt_tab+nb_elt-1) = 0;
-	
 	pt_pile->nb_elt = nb_elt - 1;
 	
 	return element;
@@ -138,8 +137,6 @@ bool estVide(Pile_t * pt_pile)
 			vide = false;
 		}
 	}
-	
-	//printf("la pile est vide == %d\n", vide); // à supprimer pour rendre le rapport
 	return vide;
 }
 
@@ -164,16 +161,18 @@ void libererPile(Pile_t * pt_pile)
 
 
 
-//extension à supprimer avant de rendre le tp : affichage dans le cas int
-void affichage_pile_int(Pile_t * pt_pile)
+/*  extension d'affichage pour réaliser les tests  */
+
+void affichagePile(Pile_t * pt_pile)
 {
 	int i=0;
-	element_t * pt_tab = pt_pile->pt_tab; /* récuperer le tableau dans la fonction ou faire *(pt_pile->pt_tab+i) mais un peu illisible */
+	element_t * pt_tab = NULL; 
+	pt_tab = pt_pile->pt_tab; /* récuperer le tableau dans la fonction */
 	int taille = pt_pile->taille;
-	
+		
 	for (i=0;i<taille;i++)
 	{
-		printf("element n°%d =" FORMAT, taille-i, *(pt_tab+taille-i-1));
+		printf("element n°%d =" FORMAT_ELT, taille-i, *(pt_tab+taille-i-1));
 	}
 }
 /* ----FIN DU MODULE---- */

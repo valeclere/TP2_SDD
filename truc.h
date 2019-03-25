@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#define FORMAT_TRUC "%c\n"
+#define FORMAT_TRUC "%c "
 typedef char truc_t;
 
 void truc_rec(int i, int n, truc_t T[]);

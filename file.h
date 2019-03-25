@@ -12,7 +12,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define FORMAT "%d\n"
+#define FORMAT_ELT "%d\n"
 typedef int element_t;
 
 typedef struct file{

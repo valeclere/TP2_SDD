@@ -6,13 +6,19 @@
 //  Copyright © 2019 Pereira Loann. All rights reserved.
 //
 
-/*  |  */
-
 #include "truc.h"
 #include "pile.h"
 
-
-/*  truc|  */
+/* --------------------------------------------------------------------------------------- */
+/*  truc_rec : fonction récursive qui affiche toutes les permutations de la liste envoyée  */
+/*                                                                                         */
+/*  En entrée :                                                                            */
+/*  	-i = indice à partir duquel on commence les permutations                           */
+/*  	-n = taille de la liste                                                            */
+/*  	-T[] = liste contenant des truc_t (int, float, char,..)                            */
+/*                                                                                         */
+/*  Pas de sortie                                                                          */
+/* --------------------------------------------------------------------------------------- */
 
 void truc_rec(int i, int n, truc_t T[])
 {
@@ -20,11 +26,11 @@ void truc_rec(int i, int n, truc_t T[])
     int       temp;
     if(i==n)
     {
+		 printf("\n");
         for(j=0;j<n;j++)
         {
-            printf("T[%d]=" FORMAT_TRUC,j,T[j]);
+            printf(FORMAT_TRUC,T[j]);
         }
-         printf("----------------\n");
     }
     else
     {
@@ -42,7 +48,15 @@ void truc_rec(int i, int n, truc_t T[])
 }
 
 
-/*  |  */
+/* ------------------------------------------------------------- */
+/*  echange : fonction qui échange deux valeurs dans la liste    */
+/*                                                               */
+/*  En entrée :                                                  */
+/*  	-i,j = indices des valeurs à échanger                    */
+/*  	-T[] = liste contenant des truc_t (int, float, char,..)  */
+/*                                                               */
+/*  Pas de sortie                                                */
+/* ------------------------------------------------------------- */
 
 void echange(truc_t T[], int i, int j)
 {
@@ -53,7 +67,16 @@ void echange(truc_t T[], int i, int j)
 }
 
 
-/*  |  */
+/* --------------------------------------------------------------------------------------- */
+/*  truc_ite : fonction itérative qui affiche toutes les permutations de la liste envoyée  */
+/*                                                                                         */
+/*  En entrée :                                                                            */
+/*  	-i = indice à partir duquel on commence les permutations                           */
+/*  	-n = taille de la liste                                                            */
+/*  	-T[] = liste contenant des truc_t (int, float, char,..)                            */
+/*                                                                                         */
+/*  Pas de sortie                                                                          */
+/* --------------------------------------------------------------------------------------- */
 
 void truc_ite(int i, int n, truc_t T[])
 {
@@ -83,7 +106,6 @@ void truc_ite(int i, int n, truc_t T[])
 				}
 				printf("\n");
 			}
-			
 			
 			if (!estVide(pt_pile))
 			{
