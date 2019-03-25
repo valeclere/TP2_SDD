@@ -17,5 +17,5 @@ typedef char truc_t;
 void truc_rec(int i, int n, truc_t T[]);
 void echange(truc_t T[], int i, int j);
 void truc_ite(int i, int n, truc_t T[]);
-
+void affichageT(truc_t *T, int taille);
 #endif /* truc_h */

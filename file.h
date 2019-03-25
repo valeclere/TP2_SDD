@@ -13,20 +13,20 @@
 #include <stdlib.h>
 
 #define FORMAT_ELT "%d\n"
-typedef int element_t;
+typedef int element_t; /* type de variables présentes dans le tableau, ici on considère des int */
 
 typedef struct file{
     int taille;
     int nb_elt;
-    element_t * deb;
-    element_t * fin;
+    int  deb;
+    int  fin;
     element_t * base;
 } File_t;
 
 
 File_t* initFile(int taille);
 void enfiler(File_t *pt_fi, element_t val, int *err);
-void defiler(File_t *pt_fi,int* err);
+element_t  defiler(File_t *pt_fi,int* err);
 bool estFileVide(File_t fi);
 void libererFile(File_t * pt_fi);
 void affichageFile(File_t *pt_fi);

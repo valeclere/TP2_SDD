@@ -24,6 +24,8 @@ void truc_rec(int i, int n, truc_t T[])
 {
     int       j;
     int       temp;
+    printf("Appel de TRUC avec i=%d et n=%d et ",i,n);
+    affichageT(T, n);
     if(i==n)
     {
 		 printf("\n");
@@ -31,14 +33,20 @@ void truc_rec(int i, int n, truc_t T[])
         {
             printf(FORMAT_TRUC,T[j]);
         }
+        printf("\n");
     }
     else
     {
+        printf("\n");
+        for(int tmp=i;tmp>=1;tmp--)printf("\t");
         for(j=i;j<n;j++)
         {
             temp=T[i];
             T[i]=T[j];
             T[j]=temp;
+            printf("i+1=%d",i+1);
+            printf("\n\t");
+            for(int tmp=i;tmp!=0;tmp--)printf("\t");
             truc_rec(i+1,n,T);
             temp=T[i];
             T[i]=T[j];
@@ -47,6 +55,12 @@ void truc_rec(int i, int n, truc_t T[])
     }
 }
 
+void affichageT(truc_t *T, int taille)
+{
+    int i;
+    for(i=0;i<taille;i++)
+        printf(" | T[%d]="FORMAT_TRUC,i,T[i]);
+}
 
 /* ------------------------------------------------------------- */
 /*  echange : fonction qui échange deux valeurs dans la liste    */

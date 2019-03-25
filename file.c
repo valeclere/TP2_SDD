@@ -36,12 +36,14 @@ File_t* initFile(int taille)
     if (pt_base == NULL)        /* si l'allocation de la file échoue */
     {
         printf("problème d'allocation de la pile");
+        free(pt_file);
         exit(1);                /* sortie immédiate du code en cas de problème d'allocation */
     }
     pt_file->base=pt_base;
     pt_file->taille=taille;
-    pt_file->deb=&pt_base[taille-1];       /*le pointeur de début pointe sur ce que pointe pt_base càd le dernier élément de la file*/
-    pt_file->fin=&pt_base[taille-1];       /*idem pour fin car pour le moment il y a 0 élément*/
+    pt_file->nb_elt=0;
+    pt_file->deb=0;
+    pt_file->fin=0;
     return pt_file;             /*on retourne la file*/
 }
 
@@ -56,39 +58,41 @@ File_t* initFile(int taille)
 
 void enfiler(File_t *pt_fi, element_t val, int *err)
 {
-    if(pt_fi->nb_elt+1<=pt_fi->taille) /*on vérifie s'il y a assez de place pour ajouter un élément*/
+    if(pt_fi->nb_elt<pt_fi->taille)/*on vérifie si la file peut acceuillir un élément supplémentaire*/
     {
-        if(pt_fi->nb_elt>=1) /*on regarde s'il y a au moins un élément dans notre file*/
-        {
-            (pt_fi->deb)--;/*on recule le pointeur début sur le nouvelle "case" on l'on va l'ajouté*/
-        }           /*si on a 0 élément on apas besoin de décaler le pointeur car deb et fin pointeront sur le même unique élément*/
-        *(pt_fi->deb)=val;
-        pt_fi->nb_elt++; /*on incrément le nombre d'élément que si on a pu l'ajouter*/
-        *err=1; /* on met le pointeur d'erreur à 1 pour indiquer que tout c'est bien passé*/
+        pt_fi->base[pt_fi->fin]=val; /*on place val à l'indice fin de base*/
+        pt_fi->fin=(pt_fi->fin+1) % pt_fi->taille; /*on incrémente fin de 1 tout en appliquant le modulo taille*/
+                                                   /*car si l'on arrive en fin de tableau au revient au début*/
+        pt_fi->nb_elt++;                           /*on incrémente le nombre d'élément*/
+        *err=1;
     }
-    else
-    {
-        *err=0;/* on met le pointeur d'erreur à 0 pour indiquer qu'il y a eu un problème*/
-    }
-}
 
-void defiler(File_t *pt_fi,int* err){
-    int i;
-    if(pt_fi->nb_elt>0)/*si la file n'est pas vide*/
+}
+/* ----------------------------------------------------------------------------------------------------------- */
+/*  defiler : permet d'enlever (défiler) une valeur dans une file                                              */
+/*                                                                                                             */
+/*  En entrée :                                                                                                */
+/*      -pt_fi: pointeur de file                                                                               */
+/*      -err  : pointeur d'entier qui permet de gérer l'erreur                                                 */
+/* En sortie :                                                                                                 */
+/*      -val : correspond à l'élément que l'on défile                                                          */
+/* ----------------------------------------------------------------------------------------------------------- */
+
+
+element_t  defiler(File_t *pt_fi, int* err)
+{
+
+    element_t   valDefile = 0; /* variable acceuillant la valeur que l'on défile*/
+    *err=0;                    /*car si jamais si n'est pas vérifié alors err restera à 0 et indiquera qu'il y a eu un problème*/
+    if(!estFileVide(*pt_fi))   /* on vérifie si la file n'est pas vide, pour qu'on est bien au moins un élément à défiler*/
     {
-        if (pt_fi->nb_elt==1) {
-            pt_fi->deb=pt_fi->fin;
-        }
-        else{
-            for(i=0;i<pt_fi->nb_elt;i++){
-                *((pt_fi->fin)-i)= *((pt_fi->fin)-i-1);
-            }
-            pt_fi->deb++;
-        }
-         pt_fi->nb_elt--;
-        
+        valDefile = pt_fi->base[pt_fi->deb];    /* on récupère l'élément ce situant à l'indice début de base*/
+        pt_fi->deb=(pt_fi->deb+1)%pt_fi->taille; /*on incrémente deb de 1 tout en appliquant le modulo taille*/
+                                                 /*car si l'on arrive en fin de tableau au revient au début*/
+        pt_fi->nb_elt--;                         /*on décrémente le nombre d'élément*/
+        *err=1;                                 /*on indique que le traitement c'est bien passé en passant la valeur pointé par err à 1*/
     }
-    
+    return valDefile; /*on retourne la valeur défilée*/
 }
 
 /* ----------------------------------------------------------------------------------------------------------- */
@@ -102,22 +106,34 @@ void affichageFile(File_t *pt_fi)
 {
     int i;
     if(pt_fi->nb_elt!=0){
-        for(i=0;(pt_fi->deb)+i<=pt_fi->fin;i++) {
-            printf("Elément n°%d =" FORMAT_ELT,pt_fi->nb_elt-i,*((pt_fi->deb)+i));
+        for(i=pt_fi->deb;i-pt_fi->deb<pt_fi->nb_elt;i++)/*on affiche que les éléments présents entre l'indice deb et fin de base*/
+        {
+            printf("Emplacement n°%d =" FORMAT_ELT,i+1,pt_fi->base[i]);
         }
     }
-    else printf("La file est vide ---> RIEN A AFFICHER\n");
-
+    else printf("La file est vide ---> RIEN A AFFICHER\n"); /*si la file est vide*/
 }
 
-
+/* ----------------------------------------------------------------------------------------------------------- */
+/*  affichageFile : permet d'afficher la file (utile pour les tests et débogage                                */
+/*                                                                                                             */
+/*  En entrée :                                                                                                */
+/*      -pt_fi: pointeur de file                                                                               */
+/* ----------------------------------------------------------------------------------------------------------- */
 bool estFileVide(File_t fi)
 {
-    return fi.base==NULL;
+    return fi.base==NULL||fi.nb_elt==0;
 }
+
+/* ----------------------------------------------------------------------------------------------------------- */
+/*  libererFile : permet de libérer en mémoire l'intégralité de la file                                        */
+/*                                                                                                             */
+/*  En entrée :                                                                                                */
+/*      -pt_fi: pointeur de file                                                                               */
+/* ----------------------------------------------------------------------------------------------------------- */
 
 void libererFile(File_t * pt_fi)
 {
-    free(pt_fi->base);
-    free(pt_fi);
+    free(pt_fi->base);  /*on libère le "tableau" des éléments constituant la file*/
+    free(pt_fi);        /*on libère la pointeur sur file*/
 }
