@@ -139,7 +139,7 @@ bool estVide(Pile_t * pt_pile)
 		}
 	}
 	
-	printf("la pile est vide == %d\n", vide); // à supprimer pour rendre le rapport
+	//printf("la pile est vide == %d\n", vide); // à supprimer pour rendre le rapport
 	return vide;
 }
 

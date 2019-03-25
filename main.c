@@ -41,7 +41,9 @@ int main(){
 	
 	
 	/*------------------------FIN tests PILE------------------------------*/
-	/*--------------------------------------------------------------------*/
+	
+	
+	/*-----------------------------TESTS FILE-----------------------------*/
 	
 	
     printf("\n\n-------Tests FILE---------\n\n");
@@ -55,11 +57,11 @@ int main(){
     enfiler(pt_file, 5089, err);
     printf("\naffichage File initiale\n\n");
     affichageFile(pt_file);
-    /**/
+
     defiler(pt_file, err);
     printf("\naffichage File en partie défilée\n\n");
     affichageFile(pt_file);
-    /**/
+    
     enfiler(pt_file, 1111, err);
     enfiler(pt_file, 2222, err);
     printf("\naffichage File re-enfiler\n\n");
@@ -73,7 +75,8 @@ int main(){
     truc_t  T[]={'a','b','c'};
     
 	printf("\n\n-------Tests de TRUC-------\n\n");
-    truc(0,n,T);
+    truc_rec(0,n,T);
+    truc_ite(0, n,T);
 	
 	return 0;
 }

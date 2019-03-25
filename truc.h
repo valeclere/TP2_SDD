@@ -14,6 +14,8 @@
 #define FORMAT_TRUC "%c\n"
 typedef char truc_t;
 
-void truc(int i, int n, truc_t T[]);
+void truc_rec(int i, int n, truc_t T[]);
+void echange(truc_t T[], int i, int j);
+void truc_ite(int i, int n, truc_t T[]);
 
 #endif /* truc_h */
