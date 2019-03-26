@@ -73,18 +73,24 @@ Pile_t * initPile(int taille)
 /*  Entrée :                                                              */
 /*  -pt_pile = pointeur sur la pile                                       */
 /*  -element = valeur à empiler dans le tableau                           */
-/*                                                                        */
+/*  -err = code erreur : vaut 0 quand il y a une erreur, 1 sinon          */
+/*                                                                        */                                                               
 /*  Pas de sortie                                                         */
 /* ---------------------------------------------------------------------- */
 
-void empiler(Pile_t * pt_pile, element_t element)
+void empiler(Pile_t * pt_pile, element_t element, int * err)
 {
-	element_t * pt_tab = pt_pile->pt_tab; /* récuperer le tableau dans la fonction ou faire *(pt_pile->pt_tab+i) mais un peu illisible */
+	*err=0;
+	element_t * pt_tab = pt_pile->pt_tab; /* récuperer le tableau dans la fonction */
 	int nb_elt = pt_pile->nb_elt;
+	int taille = pt_pile->taille;
 	
+	if(nb_elt<taille)
+	{	
 	*(pt_tab+nb_elt) = element;
-	
 	pt_pile->nb_elt = nb_elt + 1;
+	*err=1; /* s'il n'y a pas eu d'erreur err=1 */
+	}
 }
 
 
@@ -95,20 +101,26 @@ void empiler(Pile_t * pt_pile, element_t element)
 /*                                                              */
 /*  Entrée :                                                    */
 /*  	-pt_pile = pointeur sur la pile                         */
+/*  -err = code erreur : vaut 0 s'il y a une erreur, 1 sinon    */ 
 /*                                                              */
 /*  Sortie :                                                    */
 /*  	-element = élément retiré                               */
 /* ------------------------------------------------------------ */
 
-element_t depiler(Pile_t * pt_pile)
+element_t depiler(Pile_t * pt_pile, int * err)
 {
-	element_t * pt_tab = pt_pile->pt_tab; /* récuperer le tableau dans la fonction ou faire *(pt_pile->pt_tab+i) mais un peu illisible */
+	*err = 0;
+	element_t * pt_tab = pt_pile->pt_tab; /* récuperer le tableau dans la fonction */
 	int nb_elt = pt_pile->nb_elt;
-	element_t element;
+	element_t element = 0;
 	
+	if(!estVide(pt_pile))
+	{ 
 	element = *(pt_tab+nb_elt-1);
 	*(pt_tab+nb_elt-1) = 0;
 	pt_pile->nb_elt = nb_elt - 1;
+	*err = 1; /* s'il n'y a pas eu d'erreur err=1 */
+	}
 	
 	return element;
 }

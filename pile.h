@@ -15,8 +15,8 @@ typedef struct Pile_s{
 }Pile_t;
 
 Pile_t * initPile(int taille);
-void empiler(Pile_t * pt_pile, element_t element);
-element_t depiler(Pile_t * pt_pile);
+void empiler(Pile_t * pt_pile, element_t element, int *err);
+element_t depiler(Pile_t * pt_pile,int* err);
 bool estVide(Pile_t * pt_pile);
 void libererPile(Pile_t * pt_pile);
 void affichagePile(Pile_t * pt_pile);

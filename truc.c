@@ -125,6 +125,9 @@ void echange(truc_t T[], int i, int j)
 
 void truc_ite(int i, int n, truc_t T[])
 {
+	int mistake=0;
+	int * err =NULL;
+	err =&mistake;
 	int j=0;
 	Pile_t * pt_pile = NULL; 
 	int taille_tab = 10; 
@@ -136,7 +139,7 @@ void truc_ite(int i, int n, truc_t T[])
 		if (j<n)
 		{
 			echange(T, i, j);
-			empiler(pt_pile, j);
+			empiler(pt_pile, j, err);
 			i++;
 			j=i;
 		}
@@ -154,7 +157,7 @@ void truc_ite(int i, int n, truc_t T[])
 			
 			if (!estVide(pt_pile))
 			{
-				j = depiler(pt_pile);
+				j = depiler(pt_pile, err);
 				i--;
 				echange(T, i, j);
 				j++;
