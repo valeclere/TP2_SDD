@@ -43,6 +43,7 @@ int main(){
     affichagePile(pt_pile);
     printf("\nvaleur dépilée = %d\n", var);
 
+    libererPile(pt_pile);
     
     /*réinitialisation*/
     pt_pile=NULL;

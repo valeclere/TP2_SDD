@@ -42,7 +42,6 @@ Pile_t * initPile(int taille)
 	
 	pt_pile = (Pile_t*)malloc(sizeof(Pile_t)); 
 	
-	pt_tab = (element_t*)malloc(taille*sizeof(element_t));
 	 
 	if (pt_pile == NULL) /* si l'allocation de la pile échoue */
 	{
@@ -50,9 +49,12 @@ Pile_t * initPile(int taille)
 		exit(1); /* sortie immédiate du code en cas de problème d'allocation */
 	}
 	
+	pt_tab = (element_t*)malloc(taille*sizeof(element_t));
+	
 	if (pt_tab == NULL)  /* si l'allocation du tableau échoue */
 	{
 		printf("problème d'allocation du tableau");
+		free(pt_pile);
 		exit(1);
 	}
 	
@@ -172,19 +174,24 @@ void libererPile(Pile_t * pt_pile)
 
 
 
-
 /*  extension d'affichage pour réaliser les tests  */
 
 void affichagePile(Pile_t * pt_pile)
 {
 	int i=0;
-	element_t * pt_tab = NULL; 
-	pt_tab = pt_pile->pt_tab; /* récuperer le tableau dans la fonction */
-	int taille = pt_pile->taille;
-		
-	for (i=0;i<taille;i++)
+	
+	if((pt_pile!=NULL) && (pt_pile->nb_elt!=0))
+	{		
+		for (i=0;i<pt_pile->taille;i++)
+		{
+			printf("element n°%d =" FORMAT_ELT, pt_pile->taille-i, pt_pile->pt_tab[pt_pile->taille-i-1]) ;
+		}
+	}
+	
+	else 
 	{
-		printf("element n°%d =" FORMAT_ELT, taille-i, *(pt_tab+taille-i-1));
+		printf("pile vide ---> rien à afficher\n");
 	}
 }
+
 /* ----FIN DU MODULE---- */
