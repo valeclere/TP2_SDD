@@ -58,6 +58,7 @@ File_t* initFile(int taille)
 
 void enfiler(File_t *pt_fi, element_t val, int *err)
 {
+    *err=0;
     if(pt_fi->nb_elt<pt_fi->taille)/*on vérifie si la file peut acceuillir un élément supplémentaire*/
     {
         pt_fi->base[pt_fi->fin]=val; /*on place val à l'indice fin de base*/
