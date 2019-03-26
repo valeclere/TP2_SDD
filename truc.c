@@ -24,11 +24,40 @@ void truc_rec(int i, int n, truc_t T[])
 {
     int       j;
     int       temp;
-    printf("Appel de TRUC avec i=%d et n=%d et ",i,n);
-    affichageT(T, n);
     if(i==n)
     {
-		 printf("\n");
+         printf("\n");
+        for(j=0;j<n;j++)
+        {
+            printf(FORMAT_TRUC,T[j]);
+        }
+    }
+    else
+    {
+        for(j=i;j<n;j++)
+        {
+            temp=T[i];
+            T[i]=T[j];
+            T[j]=temp;
+            truc_rec(i+1,n,T);
+            temp=T[i];
+            T[i]=T[j];
+            T[j]=temp;
+        }
+    }
+   
+}
+
+void truc_recTrace(int i, int n, truc_t T[])
+{
+    int       j;
+    int       temp;
+    printf("Appel de TRUC avec i=%d et n=%d et ",i,n);
+    affichageT(T, n);
+    printf(" --->i=n:");
+    if(i==n)
+    {
+        printf(" oui<---\n");
         for(j=0;j<n;j++)
         {
             printf(FORMAT_TRUC,T[j]);
@@ -37,7 +66,7 @@ void truc_rec(int i, int n, truc_t T[])
     }
     else
     {
-        printf("\n");
+        printf(" non<---\n");
         for(int tmp=i;tmp>=1;tmp--)printf("\t");
         for(j=i;j<n;j++)
         {
@@ -47,13 +76,14 @@ void truc_rec(int i, int n, truc_t T[])
             printf("i+1=%d",i+1);
             printf("\n\t");
             for(int tmp=i;tmp!=0;tmp--)printf("\t");
-            truc_rec(i+1,n,T);
+            truc_recTrace(i+1,n,T);
             temp=T[i];
             T[i]=T[j];
             T[j]=temp;
         }
     }
 }
+
 
 void affichageT(truc_t *T, int taille)
 {
@@ -64,7 +94,8 @@ void affichageT(truc_t *T, int taille)
 
 /* ------------------------------------------------------------- */
 /*  echange : fonction qui échange deux valeurs dans la liste    */
-/*                                                               */
+/*     Hypothèse de départ: T[] n'est pas vide et contient       */
+/*     au moins 2 éléments                                       */
 /*  En entrée :                                                  */
 /*  	-i,j = indices des valeurs à échanger                    */
 /*  	-T[] = liste contenant des truc_t (int, float, char,..)  */

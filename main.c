@@ -181,16 +181,28 @@ int main(){
     
      /*----------fonction TRUC---------------------*/
     
-    int   n=3;
+    int     n  =3;
     truc_t  T[]={'a','b','c'};
 
-    printf("\n\n-------Tests de TRUC récursive-------\n\n");
+    printf("\n\n-------Tests de TRUC RECURSIVE-------\n\n");
     truc_rec(0,n,T);
-
-    printf("\n\n-------Tests de TRUC itérative-------\n\n");
+    printf("\n\n------------AVEC TRACE-----------\n\n");
+    truc_recTrace(0,n,T);
+    printf("\n\n-------Tests de TRUC récursive avec n=2-------\n\n");
+    truc_rec(0,2,T);
+    printf("\n\n-------Tests de TRUC récursive avec n=1-------\n\n");
+    truc_rec(0,1,T);
+    
+    printf("\n-------|||Tests de TRUC ITERATIVE|||-------");
+    printf("\n\n-------Tests de TRUC itérative avec n=3-------\n\n");
     truc_ite(0, n,T);
-
     printf("\n");
+    printf("\n-------Tests de TRUC itérative avec n=2-------\n\n");
+    truc_ite(0, 2,T);
+    printf("\n-------Tests de TRUC itérative avec n=1-------\n\n");
+    truc_ite(0, 1,T);
+    printf("\n-------Tests de TRUC itérative avec n=0-------\n\n");
+    truc_ite(0, 0,T);
 	
 	return 0;
 }
